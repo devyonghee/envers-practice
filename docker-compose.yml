@@ -3,11 +3,10 @@ version: "3"
 services:
   database:
     image: mysql:5.7
-    restart: always
     ports:
       - 3306:3306
     volumes:
-      - ./data/:/var/lib/mysql/
+      - ./database/:/var/lib/mysql/
     environment:
       MYSQL_DATABASE: library
       MYSQL_ROOT_PASSWORD: password
