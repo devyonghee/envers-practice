@@ -23,17 +23,32 @@ public class Book {
     @Column
     private String content;
 
-    @ManyToOne
-    private Category category;
-
     protected Book() {
     }
 
-    public Book(String title, int price, String content, Category category) {
+    public Book(String title, int price, String content) {
         this.title = title;
         this.price = price;
         this.content = content;
-        this.category = category;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
 }
