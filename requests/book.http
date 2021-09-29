@@ -1,0 +1,24 @@
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "title": "title",
+  "price": 12000,
+  "content": "content"
+}
+
+> {% client.global.set("id", response.body.id); %}
+
+###
+
+PUT http://localhost:8080/books/{{id}}
+Content-Type: application/json
+
+{
+  "content": "updated content"
+}
+
+
+###
+
+DELETE http://localhost:8080/books/{{id}}
