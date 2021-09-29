@@ -7,6 +7,7 @@ import me.devyonghee.enverspractice.ui.dto.BookCreateRequest;
 import me.devyonghee.enverspractice.ui.dto.BookResponse;
 import me.devyonghee.enverspractice.ui.dto.BookUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookService {
@@ -17,16 +18,19 @@ public class BookService {
         this.repository = repository;
     }
 
+    @Transactional
     public BookResponse create(BookCreateRequest request) {
         return BookResponse.from(repository.save(book(request)));
     }
 
+    @Transactional
     public void update(long id, BookUpdateRequest request) {
         Book book = repository.findById(id)
                 .orElseThrow(NoSuchElementException::new);
         book.changeContent(request.getContent());
     }
 
+    @Transactional
     public void delete(long id) {
         repository.deleteById(id);
     }
