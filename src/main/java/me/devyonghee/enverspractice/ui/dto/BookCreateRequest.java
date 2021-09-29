@@ -5,7 +5,6 @@ public class BookCreateRequest {
     private String title;
     private int price;
     private String content;
-    private long categoryId;
 
     public String getTitle() {
         return title;
@@ -19,7 +18,4 @@ public class BookCreateRequest {
         return content;
     }
 
-    public long getCategoryId() {
-        return categoryId;
-    }
 }
