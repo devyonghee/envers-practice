@@ -35,6 +35,11 @@ public class BookService {
         repository.deleteById(id);
     }
 
+    public BookResponse get(long id) {
+        return BookResponse.from(repository.findById(id)
+                .orElseThrow(NoSuchElementException::new));
+    }
+
     private Book book(BookCreateRequest request) {
         return new Book(request.getTitle(), request.getPrice(), request.getContent());
     }
