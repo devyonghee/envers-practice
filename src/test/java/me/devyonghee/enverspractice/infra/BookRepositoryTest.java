@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import me.devyonghee.enverspractice.domain.Book;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,16 +17,20 @@ class BookRepositoryTest {
     @Autowired
     private TestEntityManager testEntityManager;
 
+    private Book book;
+
+    @BeforeEach
+    void setUp() {
+        book = testEntityManager.persistAndFlush(new Book("title", 1000, "content"));
+    }
+
     @Test
     void save() {
-        Book book = testEntityManager.persistAndFlush(new Book("title", 1000, "content"));
         assertNotNull(book.getId());
     }
 
     @Test
     void update() {
-        Book book = testEntityManager.persistAndFlush(new Book("title", 1000, "content"));
-
         book.changeContent("updated contents");
         testEntityManager.flush();
 
@@ -35,8 +40,6 @@ class BookRepositoryTest {
 
     @Test
     void delete() {
-        Book book = testEntityManager.persistAndFlush(new Book("title", 1000, "content"));
-
         testEntityManager.remove(book);
         testEntityManager.flush();
 
