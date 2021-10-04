@@ -8,3 +8,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+    properties:
+      org:
+        hibernate:
+          envers:
+            store_data_at_delete: true
+            audit_table_suffix: _history
