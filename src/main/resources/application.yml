@@ -13,4 +13,3 @@ spring:
         hibernate:
           envers:
             store_data_at_delete: true
-            audit_table_suffix: _history
